@@ -1,14 +1,14 @@
 {
-  "name": "write-file-async",
+  "name": "simple-web-server",
   "version": "1.0.0",
   "description": "",
   "main": "000-write-file-async.js",
   "scripts": {
-    "start": "node 000-write-file-async.js",
+    "start": "node 001-simple-web-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
