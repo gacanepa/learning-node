@@ -1,0 +1,24 @@
+# Basic Node.js Application
+
+Although there is some overlap between Dockerfile and compose.yaml, each file serves its own purpose and they work together to define how the application is built and run.
+
+## Dockerfile
+
+It is used to **build a Docker image**. It includes the base image, the application code, dependencies, environment variables, exposed ports, and the default command to run when a container is started from the image.
+
+- `FROM node:18-alpine3.19` specifies the base image for the Docker container. It's using the Node.js version 18 image based on Alpine Linux 3.19.
+- `COPY . /app` copies the current directory (where the Dockerfile is located) into the `/app` directory in the Docker image.
+- `WORKDIR /app` changes the working directory inside the Docker container to `/app`. Any subsequent instructions in the Dockerfile will be run from this directory.
+- `CMD ["npm", "start"]` is the command that will be run when the Docker container is started. In this case, it's starting the Node.js application with `npm start`.
+- `EXPOSE 3000` tells Docker that the container will be listening on port 3000. This doesn't actually publish the port to the host machine, it's more like documentation. To publish the port, the `-p` flag is required when running `docker run`.
+
+## Docker Compose
+
+It is a tool for defining and running multi-container Docker applications. It uses a YAML file to configure the application's services, networks, and volumes (each with its own Dockerfile). It can also override default commands and expose ports.
+
+- `services:` defines the services that make up the app. **Services are essentially containers in production**.
+- `app:` is the name of the first service. You can name it whatever you want.
+- `build: .` tells Docker Compose to build the Dockerfile in the current directory.
+- `ports:` maps ports between the Docker host and the Docker container. In this case, it's mapping port 3000 on the host to port 3000 on the container.
+- `volumes:` mounts paths between the Docker host and the Docker container. In this case, it's mounting the current directory on the host to `/app` in the container.
+- `command: npm start` is the command that will be run when the Docker container is started. In this case, it's starting the Node.js application with `npm start`.
