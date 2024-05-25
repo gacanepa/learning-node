@@ -1,7 +1,5 @@
 import { createServer } from 'http';
-
-const hostname = '127.0.0.1';
-const port = 3000;
+import { DEFAULT_HOSTNAME, DEFAULT_PORT } from './constants.js';
 
 const server = createServer((req, res) => {
   res.statusCode = 200;
@@ -9,6 +7,6 @@ const server = createServer((req, res) => {
   res.end('Hello World');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(DEFAULT_PORT, DEFAULT_HOSTNAME, () => {
+  console.log(`Server running at http://${DEFAULT_HOSTNAME}:${DEFAULT_PORT}/`);
 });
