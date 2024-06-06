@@ -1,6 +1,6 @@
 import { createServer } from 'http';
 import { DEFAULT_HOSTNAME, DEFAULT_PORT } from './constants.js';
-import simpleServerFunction from './simpleServerFunction.js';
+import simpleServerFunction from './utilities/simpleServerFunction.js';
 
 const server = createServer(simpleServerFunction);
 
