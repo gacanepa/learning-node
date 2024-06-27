@@ -2,10 +2,11 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 const simpleServerFunction = (req, res) => {
     const userAgent = req.headers['user-agent'];
-    res.statusCode = StatusCodes.OK;
-    res.statusMessage = ReasonPhrases.OK;
-    // Tells the browser how to interpret the response body
-    res.setHeader('Content-Type', 'text/html');
+    res.writeHead(StatusCodes.OK, ReasonPhrases.OK, {
+        // Tells the browser how to interpret the response body
+        'Content-Type': 'text/html',
+        'X-Powered-By': 'Node.js',
+    });
     res.write('<!DOCTYPE html>');
     res.write('<html>');
     res.write('<head><title>Simple Web Server</title></head>');
